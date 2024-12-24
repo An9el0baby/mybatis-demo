@@ -6,4 +6,21 @@
     <select id="getBooks" resultType="angelowu.pojo.BookInfo">
         select * from book
     </select>
+
+    <select id="getBookById" parameterType="Integer" resultType="angelowu.pojo.BookInfo">
+        select * from book where id = #{id}
+    </select>
+
+    <insert id="addBook" parameterType="angelowu.pojo.BookInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book (name, author, book_desc, price) VALUES (#{name}, #{author}, #{bookDesc}, #{price});
+    </insert>
+
+    <update id="updateBook" parameterType="angelowu.pojo.BookInfo">
+        UPDATE book SET name = #{name}, author = #{author}, book_desc = #{bookDesc}, price = #{price} WHERE id = #{id};
+    </update>
+
+    <delete id="deleteBookById" parameterType="Integer">
+        DELETE FROM book WHERE id = #{id};
+    </delete>
+
 </mapper>

@@ -6,8 +6,8 @@ USE book;
 
 -- 创建表 book
 CREATE TABLE IF NOT EXISTS book (
-                                    id INT AUTO_INCREMENT PRIMARY KEY,        -- 自增主键
-                                    name VARCHAR(255) NOT NULL,               -- 书名
+    id INT AUTO_INCREMENT PRIMARY KEY,        -- 自增主键
+    name VARCHAR(255) NOT NULL,               -- 书名
     author VARCHAR(255) NOT NULL,             -- 作者
     book_desc TEXT,                           -- 书籍描述
     price DECIMAL(10, 2) NOT NULL             -- 价格，保留两位小数
