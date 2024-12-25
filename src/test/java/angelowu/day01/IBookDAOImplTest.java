@@ -1,43 +1,32 @@
 package angelowu.day01;
 
 import angelowu.dao.IBookDAO;
+import angelowu.dao.impl.BookInfoDAOImpl;
 import angelowu.pojo.BookInfo;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.InputStream;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class IBookDAOTest {
+public class IBookDAOImplTest{
     private IBookDAO bookDAO;
-    private SqlSession sqlSession;
 
     @BeforeEach
     public void setUp() throws Exception {
-        // Initialize MyBatis SqlSession and DAO
-        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        sqlSession = sqlSessionFactory.openSession(); // Open a new session
-        bookDAO = sqlSession.getMapper(IBookDAO.class); // Obtain the DAO
+        // Initialize the DAO implementation before each test
+        bookDAO = new BookInfoDAOImpl();
     }
 
     @AfterEach
     public void tearDown() {
-        // Clean up resources after each test
-        if (sqlSession != null) {
-            sqlSession.close();
-        }
+        // Clean up or close resources after each test if needed
     }
 
     @Test
-    public void testFindAllBooks() {
+    public void testFindAllBooks() throws Exception {
         List<BookInfo> list = bookDAO.getBooks();
         assertNotNull(list); // Ensure the list is not null
         assertFalse(list.isEmpty()); // Ensure there's at least one book
@@ -47,7 +36,7 @@ public class IBookDAOTest {
     }
 
     @Test
-    public void testFindBookById() {
+    public void testFindBookById() throws Exception {
         int testId = 1; // Assume this ID exists in your database
         BookInfo book = bookDAO.getBookById(testId);
         assertNotNull(book); // Ensure the book is found
@@ -56,7 +45,7 @@ public class IBookDAOTest {
     }
 
     @Test
-    public void testAddBook() {
+    public void testAddBook() throws Exception {
         BookInfo newBook = new BookInfo(null, "Test Book", "Test Author", "Test Description", 10.99);
         int rows = bookDAO.addBook(newBook);
         assertEquals(1, rows); // Ensure one row is affected
@@ -69,7 +58,7 @@ public class IBookDAOTest {
     }
 
     @Test
-    public void testUpdateBook() {
+    public void testUpdateBook() throws Exception {
         // Assume there's a book with ID 1 that we want to update
         BookInfo bookToUpdate = bookDAO.getBookById(1);
         assertNotNull(bookToUpdate); // Ensure the book exists
@@ -87,7 +76,7 @@ public class IBookDAOTest {
     }
 
     @Test
-    public void testDeleteBookById() {
+    public void testDeleteBookById() throws Exception {
         // Add a book to ensure there's one to delete
         BookInfo bookToDelete = new BookInfo(null, "To Be Deleted", "Author", "Description", 9.99);
         bookDAO.addBook(bookToDelete);
