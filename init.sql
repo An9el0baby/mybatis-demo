@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS book (
 
 -- 插入测试数据
 INSERT INTO book (name, author, book_desc, price) VALUES
-                                                      ('The Catcher in the Rye', 'J.D. Salinger', 'A classic novel about teenage angst and rebellion.', 10.99),
-                                                      ('To Kill a Mockingbird', 'Harper Lee', 'A novel about racial injustice in the Deep South.', 12.50),
-                                                      ('1984', 'George Orwell', 'A dystopian novel about totalitarianism.', 14.99),
-                                                      ('Pride and Prejudice', 'Jane Austen', 'A romantic novel that also critiques societal norms.', 9.99),
-                                                      ('The Great Gatsby', 'F. Scott Fitzgerald', 'A novel about the American Dream and disillusionment.', 13.99);
+('The Catcher in the Rye', 'J.D. Salinger', 'A classic novel about teenage angst and rebellion.', 10.99),
+('To Kill a Mockingbird', 'Harper Lee', 'A novel about racial injustice in the Deep South.', 12.50),
+('1984', 'George Orwell', 'A dystopian novel about totalitarianism.', 14.99),
+('Pride and Prejudice', 'Jane Austen', 'A romantic novel that also critiques societal norms.', 9.99),
+('The Great Gatsby', 'F. Scott Fitzgerald', 'A novel about the American Dream and disillusionment.', 13.99);

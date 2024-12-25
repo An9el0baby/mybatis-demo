@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/book
+    username: root
+    password: 666666
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:angelowu/mapper/*.xml
+  type-aliases-package: angelowu.pojo
+  configuration:
+    map-underscore-to-camel-case: true
