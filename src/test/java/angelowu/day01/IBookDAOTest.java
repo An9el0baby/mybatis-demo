@@ -1,41 +1,22 @@
 package angelowu.day01;
 
 import angelowu.dao.IBookDAO;
+import angelowu.mybatisdemo.MybatisDemoApplication;
 import angelowu.pojo.BookInfo;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.InputStream;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(classes = MybatisDemoApplication.class)
 public class IBookDAOTest {
+
+    @Autowired
     private IBookDAO bookDAO;
-    private SqlSession sqlSession;
-
-    @BeforeEach
-    public void setUp() throws Exception {
-        // Initialize MyBatis SqlSession and DAO
-        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        sqlSession = sqlSessionFactory.openSession(); // Open a new session
-        bookDAO = sqlSession.getMapper(IBookDAO.class); // Obtain the DAO
-    }
-
-    @AfterEach
-    public void tearDown() {
-        // Clean up resources after each test
-        if (sqlSession != null) {
-            sqlSession.close();
-        }
-    }
 
     @Test
     public void testFindAllBooks() {
